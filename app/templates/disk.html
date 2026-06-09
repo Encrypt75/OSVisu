@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Disk Scheduling — OS Visualizer{% endblock %}
+
+{% block content %}
+<h1>Disk Scheduling</h1>
+<section class="controls">
+    <label>
+        Algorithm
+        <select id="disk-algorithm">
+            <option value="fcfs">FCFS</option>
+            <option value="sstf">SSTF</option>
+        </select>
+    </label>
+    <label>
+        Initial head position
+        <input type="number" id="disk-head" value="50" min="0">
+    </label>
+    <label>
+        Request queue (comma-separated)
+        <input type="text" id="disk-requests" value="98,183,37,122,14,124,65,67">
+    </label>
+    <button id="disk-run" type="button">Run Simulation</button>
+</section>
+<section id="disk-visualization" class="visualization"></section>
+<section id="disk-output" class="output"></section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/disk_view.js') }}"></script>
+{% endblock %}
