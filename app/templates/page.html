@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Page Replacement — OS Visualizer{% endblock %}
+
+{% block content %}
+<h1>Page Replacement</h1>
+<section class="controls">
+    <label>
+        Algorithm
+        <select id="page-algorithm">
+            <option value="fifo">FIFO</option>
+            <option value="lru">LRU</option>
+        </select>
+    </label>
+    <label>
+        Frames
+        <input type="number" id="page-frames" value="3" min="1">
+    </label>
+    <label>
+        Page sequence (comma-separated)
+        <input type="text" id="page-sequence" value="7,0,1,2,0,3,0,4,2,3,0,3,2">
+    </label>
+    <button id="page-run" type="button">Run Simulation</button>
+</section>
+<section id="page-visualization" class="visualization"></section>
+<section id="page-output" class="output"></section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/page_view.js') }}"></script>
+{% endblock %}
