@@ -11,7 +11,9 @@
 <div class="window-controls" aria-hidden="true">
 
     <span class="window-dot"></span>
+
     <span class="window-dot"></span>
+
     <span class="window-dot"></span>
 
 </div>
@@ -23,7 +25,8 @@
 <header class="home-hero">
 
     <h1 class="home-title">Operating System Visualizer</h1>
-    <p class="home-subtitle">lorem ipsum sample text here maybe definition or what</p>
+
+    <p class="home-subtitle">pwede dito kahit anong text tayo na bahala</p>
 
 </header>
 
@@ -47,11 +50,13 @@
 
                 <div class="home-algo-tabs home-algo-tabs--grid" role="tablist">
 
-                    <a href="{{ url_for('cpu.cpu_page') }}?algorithm=fcfs" class="home-algo-tab">First Come First
-                        Served</a>
-                    <a href="{{ url_for('cpu.cpu_page') }}?algorithm=sjf" class="home-algo-tab">Shortest Job First</a>
-                    <a href="{{ url_for('cpu.cpu_page') }}?algorithm=ps" class="home-algo-tab">Priority Scheduling</a>
-                    <a href="{{ url_for('cpu.cpu_page') }}?algorithm=rr" class="home-algo-tab">Round Robin</a>
+                    <span class="home-algo-tab">First Come First Served</span>
+
+                    <span class="home-algo-tab">Shortest Job First</span>
+
+                    <span class="home-algo-tab">Priority Scheduling</span>
+
+                    <span class="home-algo-tab">Round Robin</span>
 
                 </div>
 
@@ -81,9 +86,9 @@
 
                 <div class="home-algo-tabs" role="tablist">
 
-                    <a href="{{ url_for('memory.memory_page') }}?algorithm=first_fit" class="home-algo-tab">First
-                        Fit</a>
-                    <a href="{{ url_for('memory.memory_page') }}?algorithm=best_fit" class="home-algo-tab">Best Fit</a>
+                    <span class="home-algo-tab">First Fit</span>
+
+                    <span class="home-algo-tab">Best Fit</span>
 
                 </div>
 
@@ -92,6 +97,8 @@
         </div>
 
     </article>
+
+
 
     <article class="home-card-flip" tabindex="0">
 
@@ -111,8 +118,9 @@
 
                 <div class="home-algo-tabs" role="tablist">
 
-                    <a href="{{ url_for('page.page_page') }}?algorithm=fifo" class="home-algo-tab">FIFO</a>
-                    <a href="{{ url_for('page.page_page') }}?algorithm=lru" class="home-algo-tab">LRU</a>
+                    <span class="home-algo-tab">FIFO</span>
+
+                    <span class="home-algo-tab">LRU</span>
 
                 </div>
 
@@ -121,6 +129,8 @@
         </div>
 
     </article>
+
+
 
     <article class="home-card-flip" tabindex="0">
 
@@ -140,8 +150,9 @@
 
                 <div class="home-algo-tabs" role="tablist">
 
-                    <a href="{{ url_for('disk.disk_page') }}?algorithm=fcfs" class="home-algo-tab">FCFS</a>
-                    <a href="{{ url_for('disk.disk_page') }}?algorithm=sstf" class="home-algo-tab">SSTF</a>
+                    <span class="home-algo-tab">FCFS</span>
+
+                    <span class="home-algo-tab">SSTF</span>
 
                 </div>
 
@@ -153,4 +164,8 @@
 
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/home_view.js') }}"></script>
 {% endblock %}
