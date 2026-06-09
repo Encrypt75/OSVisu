@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Memory Management — OS Visualizer{% endblock %}
+
+{% block content %}
+<h1>Memory Management</h1>
+<section class="controls">
+    <label>
+        Algorithm
+        <select id="memory-algorithm">
+            <option value="first_fit">First Fit</option>
+            <option value="best_fit">Best Fit</option>
+        </select>
+    </label>
+    <label>
+        Request size
+        <input type="number" id="memory-request" value="50" min="1">
+    </label>
+    <label>
+        Blocks (JSON)
+        <textarea id="memory-blocks" rows="4">[{"size":100,"free":true},{"size":500,"free":true},{"size":200,"free":true},{"size":300,"free":true},{"size":600,"free":true}]</textarea>
+    </label>
+    <button id="memory-run" type="button">Run Simulation</button>
+</section>
+<section id="memory-visualization" class="visualization"></section>
+<section id="memory-output" class="output"></section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/memory_view.js') }}"></script>
+{% endblock %}
