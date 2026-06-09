@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}CPU Scheduling — OS Visualizer{% endblock %}
+
+{% block content %}
+<h1>CPU Scheduling</h1>
+<section class="controls">
+    <label>
+        Algorithm
+        <select id="cpu-algorithm">
+            <option value="fcfs">FCFS</option>
+            <option value="sjf">SJF</option>
+            <option value="ps">PS</option>
+            <option value="rr">Round Robin</option>
+        </select>
+    </label>
+    <label>
+        Quantum (RR)
+        <input type="number" id="cpu-quantum" value="2" min="1">
+    </label>
+    <label>
+        Processes (JSON)
+        <textarea id="cpu-processes" rows="4">[{"pid":"P1","burst":5},{"pid":"P2","burst":3},{"pid":"P3","burst":8}]</textarea>
+    </label>
+    <button id="cpu-run" type="button">Run Simulation</button>
+</section>
+<section id="cpu-visualization" class="visualization"></section>
+<section id="cpu-output" class="output"></section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/cpu_view.js') }}"></script>
+{% endblock %}
