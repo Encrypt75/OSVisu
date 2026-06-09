@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OS Visualizer{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}" class="brand">{% block brand %}OS Algo Visulaizer{% endblock %}</a>
+        {% block navbar_right %}
+        <div class="nav-links">
+            <a href="{{ url_for('cpu.cpu_page') }}">CPU</a>
+            <a href="{{ url_for('memory.memory_page') }}">Memory</a>
+            <a href="{{ url_for('page.page_page') }}">Paging</a>
+            <a href="{{ url_for('disk.disk_page') }}">Disk</a>
+        </div>
+        {% endblock %}
+    </nav>
+    <main class="{% block main_class %}container{% endblock %}">
+        {% block content %}{% endblock %}
+    </main>
+    <script src="{{ url_for('static', filename='js/animator.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
