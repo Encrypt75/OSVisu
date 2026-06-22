@@ -3,20 +3,53 @@ def fcfs(processes):
     timeline = []
     time = 0
     for p in processes:
-        start = time
-        time += p["burst"]
-        timeline.append({
-            "pid": p["pid"],
-            "start": start,
-            "end": time,
-        })
+        if time < p["arrival"]:
+            time = p["arrival"] # This if else will handle idle times
+       
+            start = time
+            time += p["burst"]
+            timeline.append({
+                "pid": p["pid"],
+                "start": start,
+                "end": time,
+            })
     return {"timeline": timeline, "total_time": time}
 
 
 def sjf(processes):
-    """Shortest Job First (non-preemptive)."""
-    ordered = sorted(processes, key=lambda p: p["burst"])
-    return fcfs(ordered)
+    jobs = len(processes)
+    time = 0
+    complete = 0
+    timeline  = []
+
+    is_done = [False] * jobs # to prevent running completed jobs
+
+    while complete < jobs:
+        best_index = -1
+        min_burst = float ('inf') 
+
+        for i in range(jobs):
+            if processes [i]["arrival"] <= time and is_done == False:
+                if processes [i]["burst"] <  min_burst:
+                    min_burst = processes[i]["burst"]
+                    best_index = i
+
+        if best_index != 1:
+            start = time
+            time += processes[best_index]["burst"]
+
+        timeline.append ({
+            "pid:": processes[best_index]["pid"]
+            "start": start,
+            "end": time 
+        })            
+                
+        is_done [best_index] = True
+        complete += 1 
+
+    else:
+        time += 1 
+return {"timeline": timeline, "total_time": time}
 
 
 def preemptive_sjf(processes):
@@ -81,3 +114,5 @@ def round_robin(processes, quantum):
         idx += 1
 
     return {"timeline": timeline, "total_time": time}
+
+def priority_scheduling(processes, quantum):
