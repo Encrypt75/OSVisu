@@ -16,7 +16,7 @@ def fcfs(processes):
     return {"timeline": timeline, "total_time": time}
 
 
-def sjf(processes):
+def non_preemptive_sjf(processes):
     jobs = len(processes)
     time = 0
     complete = 0
@@ -94,25 +94,24 @@ def preemptive_sjf(processes):
 
 
 def round_robin(processes, quantum):
-    """Round-Robin scheduling with given time quantum."""
-    remaining = {p["pid"]: p["burst"] for p in processes}
-    order = [p["pid"] for p in processes]
+  """Round-Robin scheduling with a dynamic ready queue."""
+
+  jobs = [
+    {
+      "pid": p["pid"],
+      "arrival": p.get ("arrival", 0),
+      "remaining": p["burst"]
+    }
+  for p in processes
+  ]
+    
+    time = 0 
+    completed = 0
     timeline = []
-    time = 0
-    idx = 0
+    queue = []
+    visited = set()
+  
 
-    while any(remaining[pid] > 0 for pid in order):
-        pid = order[idx % len(order)]
-        if remaining[pid] <= 0:
-            idx += 1
-            continue
-        slice_time = min(quantum, remaining[pid])
-        start = time
-        time += slice_time
-        remaining[pid] -= slice_time
-        timeline.append({"pid": pid, "start": start, "end": time})
-        idx += 1
 
-    return {"timeline": timeline, "total_time": time}
 
 def priority_scheduling(processes, quantum):
