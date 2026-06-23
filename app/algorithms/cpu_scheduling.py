@@ -38,11 +38,13 @@ def non_preemptive_sjf(processes):
             start = time
             time += processes[best_index]["burst"]
 
-        timeline.append ({
-            "pid:": processes[best_index]["pid"]
+        timeline.append (
+            {
+            "pid:": processes[best_index]["pid"],
             "start": start,
             "end": time 
-        })            
+        }
+        )            
                 
         is_done [best_index] = True
         complete += 1 
@@ -91,17 +93,95 @@ def preemptive_sjf(processes):
 
     return {"timeline": timeline, "total_time": time}
 
+def non_preemptive_priority (processes):
+    time = 0 
+    completed = 0
+    timeline = []
+
+    jobs = [
+        {
+            
+            "pid": p["pid"],
+            "arrival": p.get("arrival", 0),
+            "burst": p["burst"],
+            "priority": p["priority"]
+        }
+        for p in processes
+    ]
+    while completed < len(jobs):
+        highest_priority = -1
+        chosen_job = None
+        for job in jobs:
+            if job["arrival"] <= time and job["burst"] > 0 and job["priority"] > highest_priority:
+                highest_priority = job["priority"]
+                chosen_job = job
+        
+        if not chosen_job:
+            time += 1
+            continue
+
+        time += chosen_job["burst"]
+        chosen_job["burst"] = 0
+        completed += 1
+
+        timeline.append ((chosen_job["pid"], time))
+    
+    return timeline
+
+def preemptive_priority(processes):
+    time = 0
+    completed = 0
+    timeline = []
+
+    jobs = [
+    {
+      "pid": p["pid"],
+      "arrival": p.get ("arrival", 0),
+      "burst": p["burst"],
+      "remaining": p["burst"],
+      "priority": p["priority"]
+    }
+    for p in processes
+  ]
+    prev_job_pid = None
+
+    while completed < len (jobs):
+        highest_priority = -1
+        chosen_job = None
+
+        for job in jobs:
+            if job["arrival"] <= time and job["remaining"] > 0 and job["priority"] > highest_priority:
+                highest_priority = job["priority"]
+                chosen_job = job
+        if not chosen_job:
+            time += 1
+            prev_job_pid = None
+        if chosen_job["pid"] != prev_job_pid:
+            timeline.append((chosen_job["pid"], time))
+            prev_job_pid = chosen_job["pid"]
+
+        chosen_job["remaining"] -= 1
+        time += 1
+
+        if chosen_job ["remaining"] == 0:
+            completed += 1
+    return timeline
+
+
+
+
+
 
 def round_robin(processes, quantum):
-  """Round-Robin scheduling with a dynamic ready queue."""
-
-  jobs = [
+    """Round-Robin scheduling with a dynamic ready queue."""
+    
+    jobs = [
     {
       "pid": p["pid"],
       "arrival": p.get ("arrival", 0),
       "remaining": p["burst"]
     }
-  for p in processes
+    for p in processes
   ]
     time = 0 
     completed = 0
@@ -118,9 +198,25 @@ def round_robin(processes, quantum):
             time += 1 
             continue
         pid = queue.pop(0)
+        active_job = None
         for j in jobs:
             if j["pid"] == pid: 
-                slice = min()
+                slice = min(j["remaining"], quantum)
+                time += slice
+                j["remaining"] -= slice 
+                if j["remaining"] == 0:
+                    completed += 1
+                    timeline.append (time)
+                active_job = j
+        for job in jobs:
+            if job["arrival"] <= time and job ["remaining"] > 0 and job["pid"] not in visited:
+                queue.append(job["pid"])
+                visited.add(job["pid"])
+
+        if active_job["remaining"] > 0:
+            queue.append(pid)
+    return timeline 
+                
 
 
         
