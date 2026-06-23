@@ -49,8 +49,7 @@ def non_preemptive_sjf(processes):
 
     else:
         time += 1 
-return {"timeline": timeline, "total_time": time}
-
+    return  {"timeline": timeline, "total_time": time}
 
 def preemptive_sjf(processes):
     """Preemptive SJF / Shortest Remaining Time First."""
@@ -58,7 +57,7 @@ def preemptive_sjf(processes):
         {
             "pid": p["pid"],
             "remaining": p["burst"],
-            "arrival": p.get("arrival", i),
+            "arrival": p.get("arrival", 0),
         }
         for i, p in enumerate(processes)
     ]
@@ -104,14 +103,32 @@ def round_robin(processes, quantum):
     }
   for p in processes
   ]
-    
     time = 0 
     completed = 0
     timeline = []
     queue = []
     visited = set()
+   
+    while completed < len(jobs):
+        for job in jobs:
+            if job["arrival"] <= time and job["remaining"] > 0 and job ["pid"] not in visited:
+                queue.append(job["pid"])
+                visited.add(job["pid"])
+        if not  queue:
+            time += 1 
+            continue
+        pid = queue.pop(0)
+        for j in jobs:
+            if j["pid"] == pid: 
+                slice = min()
+
+
+        
+
+
+          
+          
   
 
 
 
-def priority_scheduling(processes, quantum):
