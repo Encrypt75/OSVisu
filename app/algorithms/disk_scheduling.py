@@ -70,7 +70,7 @@ def disk_scheduling (requests, initial_head, disk_size = 200, direction='right',
                     current_head = 0
                 
                 direction = "right"
-    elif strategyin ["c_scan", "c_look"]:
+    elif strategy ["c_scan", "c_look"]:
         left.sort()
         right.sort()
 
@@ -85,6 +85,16 @@ def disk_scheduling (requests, initial_head, disk_size = 200, direction='right',
                 total_head_movement += abs(end_track - current_head)
                 total_head_movement += abs(end_track - 0)
                 current_head = 0
+            elif strategy == "c_look":
+                total_movement += abs(left[0] - current_head)
+                current_head = left[0]
+
+            for req in left:
+                    sequence.append(req)
+                    total_head_movement += abs(req - current_head)
+                    current_head = req
+    return {"sequence": sequence, "total_movement": total_head_movement}                
+
 
         
 
