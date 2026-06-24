@@ -29,6 +29,22 @@ def best_fit (blocks, processes):
     return allocation
 
 
+def worst_fit (blocks, processes):
+    free_blocks = list(blocks)
+    allocation = [-1] * len(processes)
 
+    for i in range(len(processes)):
+        best_blocks = -1
+        max_block = -1
+
+        for j in range(len(free_blocks)):
+            if free_blocks[j] >= processes[i] and free_blocks[j] > max_block:
+                max_block = free_blocks[j]
+                best_blocks = j
+            
+            if best_blocks != -1:
+                allocation[i] = best_blocks
+                free_blocks[best_blocks] -= processes[i]
+    return allocation
 
 
