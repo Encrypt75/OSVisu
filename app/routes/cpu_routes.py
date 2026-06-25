@@ -10,6 +10,11 @@ def cpu_page():
     return render_template("cpu.html")
 
 
+@cpu_bp.route("/sjf")
+def sjf_page():
+    return render_template("sjf.html")
+
+
 @cpu_bp.route("/simulate", methods=["POST"])
 def simulate():
     data = request.get_json() or {}
