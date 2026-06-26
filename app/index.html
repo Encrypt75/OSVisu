@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}Home — OS Visualizer{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block main_class %}home-main{% endblock %}
+
+{% block navbar_right %}
+
+<div class="window-controls" aria-hidden="true">
+
+    <span class="window-dot"></span>
+
+    <span class="window-dot"></span>
+
+    <span class="window-dot"></span>
+
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<header class="home-hero">
+
+    <h1 class="home-title">Operating System Visualizer</h1>
+
+    <p class="home-subtitle">pwede dito kahit anong text tayo na bahala</p>
+
+</header>
+
+<div class="home-cards">
+
+    <article class="home-card-flip" tabindex="0">
+
+        <div class="home-card-inner">
+
+            <div class="home-card-face home-card-front">
+
+                <h2>CPU Sched</h2>
+
+                <span class="home-card-hint">Hover to flip</span>
+
+            </div>
+
+            <div class="home-card-face home-card-back">
+
+                <h3 class="home-card-back-title">Algorithms</h3>
+
+                <div class="home-algo-tabs home-algo-tabs--grid" role="tablist">
+
+                    <a class="home-algo-tab" href="{{ url_for('cpu.fcfs_page') }}">First Come First Served</a>
+
+                    <a class="home-algo-tab" href="{{ url_for('cpu.sjf_page') }}">Shortest Job First</a>
+
+                    <span class="home-algo-tab">Priority Scheduling</span>
+
+                    <span class="home-algo-tab">Round Robin</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+
+    <article class="home-card-flip" tabindex="0">
+
+        <div class="home-card-inner">
+
+            <div class="home-card-face home-card-front">
+
+                <h2>Memory Management</h2>
+
+                <span class="home-card-hint">Hover to flip</span>
+
+            </div>
+
+            <div class="home-card-face home-card-back">
+
+                <h3 class="home-card-back-title">Algorithms</h3>
+
+                <div class="home-algo-tabs" role="tablist">
+
+                    <span class="home-algo-tab">First Fit</span>
+
+                    <span class="home-algo-tab">Best Fit</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+
+    <article class="home-card-flip" tabindex="0">
+
+        <div class="home-card-inner">
+
+            <div class="home-card-face home-card-front">
+
+                <h2>Page Replacement</h2>
+
+                <span class="home-card-hint">Hover to flip</span>
+
+            </div>
+
+            <div class="home-card-face home-card-back">
+
+                <h3 class="home-card-back-title">Algorithms</h3>
+
+                <div class="home-algo-tabs" role="tablist">
+
+                    <span class="home-algo-tab">FIFO</span>
+
+                    <span class="home-algo-tab">LRU</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+
+    <article class="home-card-flip" tabindex="0">
+
+        <div class="home-card-inner">
+
+            <div class="home-card-face home-card-front">
+
+                <h2>Disk Scheduling</h2>
+
+                <span class="home-card-hint">Hover to flip</span>
+
+            </div>
+
+            <div class="home-card-face home-card-back">
+
+                <h3 class="home-card-back-title">Algorithms</h3>
+
+                <div class="home-algo-tabs" role="tablist">
+
+                    <span class="home-algo-tab">FCFS</span>
+
+                    <span class="home-algo-tab">SSTF</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/home_view.js') }}"></script>
+{% endblock %}
