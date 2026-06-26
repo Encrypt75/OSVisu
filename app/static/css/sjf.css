@@ -185,6 +185,16 @@ body.sjf-page .navbar {
     margin-bottom: 1.25rem;
 }
 
+.sjf-controls--single {
+    grid-template-columns: 1fr;
+}
+
+.sjf-mode-btn--static {
+    cursor: default;
+    text-align: center;
+    user-select: none;
+}
+
 .sjf-mode-btn {
     padding: 0.85rem 1.25rem;
     border-radius: 9999px;
