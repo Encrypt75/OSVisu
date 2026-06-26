@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='osvisu-app/dist', static_url_path='/')
 
     from app.routes.cpu_routes import cpu_bp
     from app.routes.memory_routes import memory_bp
@@ -15,7 +15,10 @@ def create_app():
 
     @app.route("/")
     def index():
-        from flask import render_template
-        return render_template("index.html")
+        return send_from_directory(app.static_folder, "index.html")
+
+    @app.route("/<path:path>")
+    def static_proxy(path):
+        return send_from_directory(app.static_folder, path)
 
     return app
