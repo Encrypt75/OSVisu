@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}First Come First Served — OS Visualizer{% endblock %}
+
+{% block body_class %}sjf-page{% endblock %}
+
+{% block main_class %}sjf-main{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sjf.css') }}">
+{% endblock %}
+
+{% block brand %}{% endblock %}
+
+{% block navbar_right %}{% endblock %}
+
+{% block content %}
+<header class="sjf-header">
+    <a href="{{ url_for('index') }}" class="sjf-back" aria-label="Back to Home">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Home</span>
+    </a>
+    <h1 class="sjf-title">First Come First Served</h1>
+    <p class="sjf-description">Enter process arrival and burst times below. FCFS schedules processes in order of arrival — the first process to arrive is served first, with no preemption.</p>
+</header>
+
+<section class="sjf-card">
+    <div class="sjf-table-wrap">
+        <table class="sjf-table" id="fcfs-process-table">
+            <thead>
+                <tr>
+                    <th>Process</th>
+                    <th>Arrival Time</th>
+                    <th>Burst Time</th>
+                </tr>
+            </thead>
+            <tbody id="fcfs-process-rows">
+                <tr class="sjf-row" data-index="0">
+                    <td><span class="sjf-pill sjf-pill--label">P1</span></td>
+                    <td><input type="number" class="sjf-pill sjf-input" data-field="arrival" value="0" min="0" aria-label="P1 arrival time"></td>
+                    <td><input type="number" class="sjf-pill sjf-input" data-field="burst" value="5" min="1" aria-label="P1 burst time"></td>
+                </tr>
+                <tr class="sjf-row" data-index="1">
+                    <td><span class="sjf-pill sjf-pill--label">P2</span></td>
+                    <td><input type="number" class="sjf-pill sjf-input" data-field="arrival" value="1" min="0" aria-label="P2 arrival time"></td>
+                    <td><input type="number" class="sjf-pill sjf-input" data-field="burst" value="3" min="1" aria-label="P2 burst time"></td>
+                </tr>
+                <tr class="sjf-row" data-index="2">
+                    <td><span class="sjf-pill sjf-pill--label">P3</span></td>
+                    <td><input type="number" class="sjf-pill sjf-input" data-field="arrival" value="2" min="0" aria-label="P3 arrival time"></td>
+                    <td><input type="number" class="sjf-pill sjf-input" data-field="burst" value="8" min="1" aria-label="P3 burst time"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="button" id="fcfs-add-row" class="sjf-add-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        Add Process
+    </button>
+</section>
+
+<section class="sjf-controls sjf-controls--single">
+    <div class="sjf-mode-btn sjf-mode-btn--active sjf-mode-btn--static" aria-current="true">Non-Preemptive</div>
+</section>
+
+<section class="sjf-card sjf-output-card">
+    <h2 class="sjf-output-label">Gantt Chart:</h2>
+    <div id="fcfs-gantt" class="sjf-gantt" aria-live="polite">
+        <p class="sjf-gantt-empty">Adjust inputs to generate the schedule.</p>
+    </div>
+    <div id="fcfs-time-axis" class="sjf-time-axis"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/fcfs_view.js') }}"></script>
+{% endblock %}
