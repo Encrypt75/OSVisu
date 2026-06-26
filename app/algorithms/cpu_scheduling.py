@@ -1,8 +1,12 @@
 def fcfs(processes):
     """First-Come First-Served scheduling."""
+    ordered = sorted(
+        enumerate(processes),
+        key=lambda item: (item[1].get("arrival", 0), item[0]),
+    )
     timeline = []
     time = 0
-    for p in processes:
+    for _, p in ordered:
         if time < p.get("arrival", 0):
             time = p["arrival"]
         start = time
