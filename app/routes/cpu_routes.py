@@ -15,6 +15,11 @@ def sjf_page():
     return render_template("sjf.html")
 
 
+@cpu_bp.route("/fcfs")
+def fcfs_page():
+    return render_template("fcfs.html")
+
+
 @cpu_bp.route("/simulate", methods=["POST"])
 def simulate():
     data = request.get_json() or {}
