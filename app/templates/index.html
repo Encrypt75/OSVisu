@@ -50,13 +50,13 @@
 
                 <div class="home-algo-tabs home-algo-tabs--grid" role="tablist">
 
-                    <a class="home-algo-tab" href="{{ url_for('cpu.fcfs_page') }}">First Come First Served</a>
+                    <a class="home-algo-tab" href="{{ url_for('cpu.cpu_page') }}?algorithm=fcfs">First Come First Served</a>
 
-                    <a class="home-algo-tab" href="{{ url_for('cpu.sjf_page') }}">Shortest Job First</a>
+                    <a class="home-algo-tab" href="{{ url_for('cpu.cpu_page') }}?algorithm=sjf">Shortest Job First</a>
 
-                    <span class="home-algo-tab">Priority Scheduling</span>
+                    <a class="home-algo-tab" href="{{ url_for('cpu.cpu_page') }}?algorithm=ps">Priority Scheduling</a>
 
-                    <span class="home-algo-tab">Round Robin</span>
+                    <a class="home-algo-tab" href="{{ url_for('cpu.cpu_page') }}?algorithm=rr">Round Robin</a>
 
                 </div>
 
@@ -86,9 +86,9 @@
 
                 <div class="home-algo-tabs" role="tablist">
 
-                    <span class="home-algo-tab">First Fit</span>
+                    <a class="home-algo-tab" href="{{ url_for('memory.memory_page') }}?algorithm=first_fit">First Fit</a>
 
-                    <span class="home-algo-tab">Best Fit</span>
+                    <a class="home-algo-tab" href="{{ url_for('memory.memory_page') }}?algorithm=best_fit">Best Fit</a>
 
                 </div>
 
@@ -118,9 +118,9 @@
 
                 <div class="home-algo-tabs" role="tablist">
 
-                    <span class="home-algo-tab">FIFO</span>
+                    <a class="home-algo-tab" href="{{ url_for('page.page_page') }}?algorithm=fifo">FIFO</a>
 
-                    <span class="home-algo-tab">LRU</span>
+                    <a class="home-algo-tab" href="{{ url_for('page.page_page') }}?algorithm=lru">LRU</a>
 
                 </div>
 
@@ -150,9 +150,9 @@
 
                 <div class="home-algo-tabs" role="tablist">
 
-                    <span class="home-algo-tab">FCFS</span>
+                    <a class="home-algo-tab" href="{{ url_for('disk.disk_page') }}?algorithm=fcfs">FCFS</a>
 
-                    <span class="home-algo-tab">SSTF</span>
+                    <a class="home-algo-tab" href="{{ url_for('disk.disk_page') }}?algorithm=sstf">SSTF</a>
 
                 </div>
 
